@@ -10,25 +10,28 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post("/", async (req, res) => {
-    const activityType = req.body.type;
-    const noOfParticipants = req.body.participants;    
-    const activityDisplayed = "";
+var activityDisplayed = "";
+var activityType = "";
+var noOfParticipants = 0;
 
+// Get Data for the random Selection
+app.post("/getData", async (req, res) => {
+    activityType = req.body.type; 
+    noOfParticipants = req.body.participants ;
     if (activityType === "random" && noOfParticipants === "any") {
         const response = await axios.get("https://bored-api.appbrewery.com/random");
-        const activityDisplayed = response.data.activity;
+        activityDisplayed = response.data.activity;
     } else {
         const response = await axios.get(`https://bored-api.appbrewery.com/filter?type=${activityType}&participants=${noOfParticipants}`);
-        const activityDisplayed = response.data[Math.floor(Math.random()*response.data.length)].activity;
-    }    
-    res.render("index.ejs", { activityType: activityType, activityDisplayed: activityDisplayed, noOfParticipants: noOfParticipants});
+        activityDisplayed = response.data[Math.floor(Math.random()*response.data.length)].activity;
+    }
+    res.redirect("/");
 });
 
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render("index.ejs", { activityDisplayed: activityDisplayed, activityType: activityType, noOfParticipants: noOfParticipants });
 })
 
 app.listen(port, () => {

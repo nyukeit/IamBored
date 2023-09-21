@@ -1,0 +1,54 @@
+body {
+  font-family: 'Mooli', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+.input-form {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 30px 0;
+}
+
+#activity-display {
+  border: solid 1px #d6d6d6;
+  padding: 10px;
+  width: 500px;
+}
+
+#activity-metadata {
+  font-size: 0.8em;
+  color: darkgrey;
+  display: flex;
+  justify-content: right;
+}
+
+.metatitle {
+  margin-left: 20px;
+}
+
+#activity-message {
+  margin: 0;
+}
+
+.nobgbd {
+  padding: 10px;
+  background: none;
+  border: solid 1px #d6d6d6;
+}
+
+#message {
+  font-size: 1.3em;
+  text-wrap: balance;
+}
+
+.fa-solid {
+  margin-right: 5px;
+}

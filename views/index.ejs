@@ -3,52 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+    <link  rel="stylesheet" href="main.css">
     <title>I'm Bored</title>
 </head>
 <body>
-    <h1>Bored? Find fun things to do!</h1>
-    <form action="/" method="post" class="input-form">
-        <div class="select-type">
-            <select name="type">
-                <option value="random">Random</option>
-                <option value="education">Education</option>
-                <option value="recreational">Recreation</option>
-                <option value="social">Social</option>
-                <option value="charity">Charity</option>
-                <option value="cooking">Cooking</option>
-                <option value="relaxation">Relaxation</option>
-                <option value="busywork">Busywork</option>
-            </select>
+    <div>
+        <div>
+            <h1>Bored? Find fun things to do! ✌️</h1>
         </div>
-        <div class="select-participants">
-            <select name="participants">
-                <option value="any">Any No. of Participants</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="8">8</option>
-            </select>
-        </div>
-        <div class="btn-div">
-            <input type="submit" value="Go">
-        </div>
-    </form>
-    <div class="activity-display">
-        <% if (locals.activityDisplayed && locals.noOfParticipants) { %>
-            <div class="activity-message">
-                <p>
-                    <%=activityDisplayed%>
-                </p>
+        <div>
+            <form action="/getData" method="post" class="input-form">
+                <div>
+                    <select name="type" class="nobgbd">
+                        <option value="random">Random</option>
+                        <option value="education">Education</option>
+                        <option value="recreational">Recreation</option>
+                        <option value="social">Social</option>
+                        <option value="charity">Charity</option>
+                        <option value="cooking">Cooking</option>
+                        <option value="relaxation">Relaxation</option>
+                        <option value="busywork">Busywork</option>
+                    </select>
+                </div>
+                <div>
+                    <select name="participants" class="nobgbd">
+                        <option value="any">Any No. of Participants</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="submit" value="Go" class="nobgbd">
+                </div>
+            </form>
+            <div id="activity-display">
+                <% if (locals.activityDisplayed && locals.noOfParticipants) { %>
+                    <div id="activity-message">
+                        <p id="message">
+                            <%=activityDisplayed%>
+                        </p>
+                    </div>
+                    <div id="activity-metadata">
+                        <span class="metatitle"><strong><i class="fa-solid fa-filter"></i></strong><%=activityType%></span><span class="metatitle"><strong><i class="fa-solid fa-people-group"></i></strong><%=noOfParticipants%></span>
+                    </div>
+                <% } else { %>
+                    <p>This is where your activity will be shown</p>
+                <% } %>
             </div>
-            <div class="activity-metadata">
-                <span><%=activityType%></span><span>Particpants: <%=noOfParticipants%></span>
-            </div>
-        <% } else { %>
-            <p>This is where your activity will be shown</p>
-        <% } %>
+        </div>
     </div>
+    <script src="https://kit.fontawesome.com/09d169dcaf.js" crossorigin="anonymous"></script>
 </body>
 </html>
